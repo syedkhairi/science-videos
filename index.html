@@ -23,15 +23,15 @@
 	<script id="item-template" type="text/x-handlebars-template">
 		<div class="row row-cols-1 row-cols-md-4">
 			{{#each this}}
-			<div class="col mb-4">
+			<div class="col mb-3">
 			  	<div class="card h-100">
 				  	<div>
 				  	<span class="badge badge-info
 				  	 mt-1 mr-1 position-absolute" style="right: 0">{{demoOrFullPractical}}</span><img src="https://i.ytimg.com/vi/mcixldqDIEQ/maxresdefault.jpg" class="card-img-top">
 				  	</div>
 				    <div class="card-body">
-				      <h5 class="card-title"><a href="{{link}}" target="_blank" class="text-decoration-none">{{description}}</a></h5>
-				      <p class="card-text"><span class="badge badge-primary">{{b}}</span></p>
+					    <p class="card-text mt-n3 small"><span class="badge badge-primary">{{b}}</span></p>
+						<h5 class="card-title mb-n1 mt-n2 text-justify"><a href="{{link}}" target="_blank" class="text-decoration-none stretched-link">{{description}}</a></h5>
 				    </div>
 			  	</div>
 			</div>
@@ -43,7 +43,7 @@
 <body>
 	<div class="jumbotron">
 	    <div class="container">
-	      <h1 class="display-5">Science Demos Archive</h1>
+	      <h1 class="display-5">Science Demo Archive</h1>
 	      <form>
 			  <div class="form-row align-items-center mb-3">
 			    <div class="col-8">
