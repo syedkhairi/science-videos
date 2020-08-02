@@ -14,11 +14,12 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$.getJSON('https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks3Biology', function(data) {
+		$.getJSON('https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks4Physics', function(data) {
 			var template = Handlebars.compile($('#item-template').html())
-			$('#ks3Biology').html(template(data.ks3Biology))
+			$('#ks3Biology').html(template(data.ks4Physics))
 		})
 	})
 	</script>
@@ -36,8 +37,8 @@
 					</div>
 					<span class="badge badge-info mt-1 mr-1 position-absolute" style="right: 0">{{demoOrFullPractical}}</span>
 				    <div class="card-body">
-					    <p class="card-text mt-n3 small"><span class="badge badge-primary">{{b}}</span></p>
-						<h5 class="card-title mb-n1 mt-n2 text-justify"><a href="{{link}}" target="_blank" class="text-decoration-none stretched-link">{{description}}</a></h5>
+					    <p class="card-text mt-n3 small"><span class="badge badge-primary text-wrap text-left">{{topic}}</span></p>
+						<h5 class="card-title mb-n1 mt-n2"><a href="{{link}}" target="_blank" class="text-decoration-none stretched-link">{{description}}</a></h5>
 				    </div>
 			  	</div>
 			</div>
@@ -128,13 +129,13 @@
 	
 	
 	<div class="container">
-		<h5 class="mb-3">Key Stage 3 Biology</h5>
+		<h5 class="mb-3">Key Stage 4 Physics</h5>
 		<div id="ks3Biology">Loading results...</div>
 	</div>
 	
 	<footer class="footer mt-auto py-3">
 	  <div class="container">
-	    <span class="text-muted small">The content of this archive is crowd-sourced by <a href="https://twitter.com/@AhmedKhattabUK" target="_blank">@AhmedKhattabUK</a> & this website is open-sourced on GitHub written by <a href="https://twitter.com/@MrKhairi_" target="_blank">@MrKhairi_</a>.</span>
+	    <span class="text-muted small">The <a href="https://docs.google.com/spreadsheets/d/1LqrrbL_my8q-UdUgNSYMCGm5QO5rx5DxGjNIGRj5-uY/edit#gid=1241571298" target="_blank">content</a> of this archive is crowd-sourced by <a href="https://twitter.com/@AhmedKhattabUK" target="_blank">@AhmedKhattabUK</a> & this website is open-sourced on GitHub written by <a href="https://twitter.com/@MrKhairi_" target="_blank">@MrKhairi_</a>.</span>
 	  </div>
 	</footer>
 	
