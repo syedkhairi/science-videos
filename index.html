@@ -17,13 +17,35 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$.getJSON('https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks4Physics', function(data) {
-			var template = Handlebars.compile($('#item-template').html())
-			$('#ks3Biology').html(template(data.ks4Physics))
+		var subject
+		var name
+		
+		$('#biology, #chemistry, #physics').on('change', function(e) {
+			subject = $(this).val();
+			name = $(this).find('option:selected').attr("name");
+			getData(subject, name)
 		})
 	})
+	
+	function getData(subject, name){
+		$.getJSON(subject, function(data) {
+			var results = data[name]
+			
+			var titletemplate = Handlebars.compile($('#title-template').html())
+			$('#title').html(titletemplate(name))
+			
+			var resultstemplate = Handlebars.compile($('#results-template').html())
+			$('#results').html(resultstemplate(results))
+		})
+	}
+	
 	</script>
-	<script id="item-template" type="text/x-handlebars-template">
+		
+	<script id="title-template" type="text/x-handlebars-template">
+		<h5 class="mb-3">{{name}}</h5>
+	</script>
+	
+	<script id="results-template" type="text/x-handlebars-template">
 		<div class="row row-cols-1 row-cols-md-4">
 			{{#each this}}
 			<div class="col mb-3">
@@ -83,38 +105,32 @@
 	     	<div class="row">
 				<div class="col-4">
 					<div class="dropdown">
-						<button class="btn btn-primary btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Biology
-						</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<button class="dropdown-item" type="button" value="">Key Stage 3</button>
-							<button class="dropdown-item" type="button" value="">Key Stage 4</button>
-							<button class="dropdown-item" type="button" value="">Key Stage 5</button>
-						</div>
+						<select class="form-control form-control-lg" id="biology">
+							<option>Biology</option>
+							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks3Biology" name="ks3Biology">Key Stage 3</option>
+							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks4Biology" name="ks4Biology">Key Stage 4</option>
+							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks5Biology" name="ks5Biology">Key Stage 5</option>
+						</select>
 					</div>
 				</div>
 				<div class="col-4">
 					<div class="dropdown">
-						<button class="btn btn-primary btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Chemistry
-						</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<button class="dropdown-item" type="button" value="">Key Stage 3</button>
-							<button class="dropdown-item" type="button" value="">Key Stage 4</button>
-							<button class="dropdown-item" type="button" value="">Key Stage 5</button>
-						</div>
+						<select class="form-control form-control-lg" id="chemistry">
+							<option>Chemistry</option>
+							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks3Chemistry" name="ks3Chemistry">Key Stage 3</button>
+							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks4Chemistry" name="ks4Chemistry">Key Stage 4</button>
+							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks5Chemistry" name="ks5Chemistry">Key Stage 5</button>
+						</select>
 					</div>
 				</div>
 				<div class="col-4">
 					<div class="dropdown">
-						<button class="btn btn-primary btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Physics
-						</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<button class="dropdown-item" type="button" value="">Key Stage 3</button>
-							<button class="dropdown-item" type="button" value="">Key Stage 4</button>
-							<button class="dropdown-item" type="button" value="">Key Stage 5</button>
-						</div>
+						<select class="form-control form-control-lg" id="physics">
+							<option>Physics</option>
+							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks3Physics" name="ks3Physics">Key Stage 3</button>
+							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks4Physics" name="ks4Physics">Key Stage 4</button>
+							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks5Physics" name="ks5Physics">Key Stage 5</button>
+						</select>
 					</div>
 				</div>
 	     	</div>
@@ -123,8 +139,8 @@
 	
 	
 	<div class="container">
-		<h5 class="mb-3">Key Stage 4 Physics</h5>
-		<div id="ks3Biology">Loading results...</div>
+		<div id="title"></div>
+		<div id="results">Search or use the buttons above</div>
 	</div>
 	
 	<footer class="footer mt-auto py-3">
