@@ -23,6 +23,7 @@
 		$('#biology, #chemistry, #physics').on('change', function(e) {
 			subject = $(this).val();
 			name = $(this).find('option:selected').attr("name");
+			$('#biology, #chemistry, #physics').prop('selectedIndex',0);
 			getData(subject, name)
 		})
 	})
