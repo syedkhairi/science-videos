@@ -7,7 +7,6 @@
     <meta name="author" content="">
     <title>Science Demo</title>
 
-    <!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
@@ -64,7 +63,7 @@
 					<div class="d-flex justify-content-center">
 		            	<div class="img-gradient h-100 w-100">
 				            <div style="object-fit: fill">
-					            <img src="https://i.ytimg.com/vi/mcixldqDIEQ/maxresdefault.jpg" class="card-img-top">
+					            <img src="https://cors-anywhere.herokuapp.com/ + {{link}}" class="card-img-top">
 					        </div>
 					    </div>
 					</div>
@@ -151,7 +150,7 @@
 	
 	<div class="container">
 		<div id="title"></div>
-		<div id="results">Search or use the buttons above</div>
+		<div id="results"><span class="text-muted"><i>Search specific keywords or use the dropdown buttons above to view all content.</i></span></div>
 	</div>
 	
 	<footer class="footer mt-auto py-3">
