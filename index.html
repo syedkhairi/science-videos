@@ -46,7 +46,6 @@
 					var resultstemplate = Handlebars.compile($('#results-template').html())
 					$('#results').html(resultstemplate(data, pagination))
 					$('#loader').hide()
-					console.log(pagination)
 				}
 		    });
 			
@@ -75,7 +74,13 @@
 					<span class="badge badge-info mt-1 mr-1 position-absolute" style="right: 0">{{demoOrFullPractical}}</span>
 				    <div class="card-body">
 					    <p class="card-text mt-n3 small"><span class="badge badge-primary text-wrap text-left">{{topic}}</span></p>
-						<h5 class="card-title mb-n1 mt-n2"><a href="{{link}}" target="_blank" class="text-decoration-none stretched-link">{{description}}</a></h5>
+						<h5 class="card-title mt-n2"><a href="{{link}}" target="_blank" class="text-decoration-none">{{description}}</a></h5>
+						
+						{{#if worksheet}}
+							<a href="{{worksheetLink}}" target="_blank" class="btn btn-outline-success btn-sm"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-paperclip" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
+</svg> Worksheet</a>
+						{{/if}}
 				    </div>
 			  	</div>
 			</div>
