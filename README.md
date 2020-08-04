@@ -13,4 +13,4 @@ The database runs on Google Sheets where the data is transformed into a JSON obj
 Features:
 1. Teacher-curated videos
 2. Aligned with UK schools curriculum
-3. Worksheets to compliment the videos (integrated instructions, SLOP etc)
+3. Worksheets to compliment the videos or virtual simulation (integrated instructions, SLOP etc)
