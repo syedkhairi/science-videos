@@ -17,7 +17,7 @@ Features:
 
 Dependencies:
 1. jQuery
-2. handlebar.js
+2. handlebars.js
 3. Sheety
 4. pagination.js
 5. Bootstrap CSS
