@@ -42,6 +42,7 @@
 			        
 					var titletemplate = Handlebars.compile($('#title-template').html())
 					$('#title').html(titletemplate(name))
+					console.log(name)
 					
 					var resultstemplate = Handlebars.compile($('#results-template').html())
 					$('#results').html(resultstemplate(data, pagination))
@@ -94,16 +95,22 @@
 </head>
 
 <body class="d-flex flex-column h-100">
-	<div class="jumbotron">
+	<div class="jumbotron jumbotron-fluid">
 	    <div class="container">
-	      <h1 class="display-5">Science Demo Archive</h1>
+		    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+			  This website is under development.
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+	      <a href="index.html" class="text-decoration-none"><h1 class="display-5 text-body">Science Demo Archive</h1></a>
 	      <form>
 			  <div class="form-row align-items-center mb-3">
 			    <div class="col-sm-8">
 			      <input type="text" class="form-control form-control-lg" placeholder="Search">
 			    </div>
 			    <div class="col-sm-auto">
-			     <select class="custom-select custom-select-lg">
+			     <select class="custom-select custom-select-lg" required>
 				  <option selected>Key Stage</option>
 				  <option value="ks3">Key Stage 3</option>
 				  <option value="ks4">Key Stage 4</option>
@@ -111,7 +118,7 @@
 				</select>
 			    </div>
 			    <div class="col-sm-auto">
-			     <select class="custom-select custom-select-lg">
+			     <select class="custom-select custom-select-lg" required>
 				  <option selected>Subject</option>
 				  <option value="biology">Biology</option>
 				  <option value="chemistry">Chemistry</option>
@@ -129,7 +136,7 @@
 	     	<div class="row">
 				<div class="col-sm-4">
 					<div class="dropdown">
-						<select class="form-control form-control-lg" id="biology">
+						<select class="custom-select custom-select-lg" id="biology">
 							<option>Biology</option>
 							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks3Biology" name="ks3Biology">Key Stage 3</option>
 							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks4Biology" name="ks4Biology">Key Stage 4</option>
@@ -139,7 +146,7 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="dropdown">
-						<select class="form-control form-control-lg" id="chemistry">
+						<select class="custom-select custom-select-lg" id="chemistry">
 							<option>Chemistry</option>
 							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks3Chemistry" name="ks3Chemistry">Key Stage 3</button>
 							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks4Chemistry" name="ks4Chemistry">Key Stage 4</button>
@@ -149,7 +156,7 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="dropdown">
-						<select class="form-control form-control-lg" id="physics">
+						<select class="custom-select custom-select-lg" id="physics">
 							<option>Physics</option>
 							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks3Physics" name="ks3Physics">Key Stage 3</button>
 							<option class="dropdown-item" type="button" value="https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/ks4Physics" name="ks4Physics">Key Stage 4</button>
@@ -176,7 +183,7 @@
 	
 	<footer class="footer mt-auto py-3">
 	  <div class="container">
-	    <span class="text-muted small">The <a href="https://docs.google.com/spreadsheets/d/1LqrrbL_my8q-UdUgNSYMCGm5QO5rx5DxGjNIGRj5-uY/edit#gid=1241571298" target="_blank">content</a> of this archive is crowd-sourced by <a href="https://twitter.com/@AhmedKhattabUK" target="_blank">@AhmedKhattabUK</a> & this website is open-sourced on GitHub written by <a href="https://twitter.com/@MrKhairi_" target="_blank">@MrKhairi_</a>.</span>
+	    <span class="text-muted small">The <a href="https://docs.google.com/spreadsheets/d/1LqrrbL_my8q-UdUgNSYMCGm5QO5rx5DxGjNIGRj5-uY/edit#gid=1241571298" target="_blank">content</a> of this archive is crowd-sourced by <a href="https://twitter.com/@AhmedKhattabUK" target="_blank">@AhmedKhattabUK</a> & this website is open-sourced on <a href="https://github.com/syedkhairi/sciencedemos" target="_blank">GitHub</a> written by <a href="https://twitter.com/@MrKhairi_" target="_blank">@MrKhairi_</a>.</span>
 	  </div>
 	</footer>
 	
