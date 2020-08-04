@@ -14,3 +14,10 @@ Features:
 1. Teacher-curated videos
 2. Aligned with UK schools curriculum
 3. Worksheets to compliment the videos or virtual simulation (integrated instructions, SLOP etc)
+
+Dependencies:
+1. jQuery
+2. handlebar.js
+3. Sheety
+4. pagination.js
+5. Bootstrap CSS
