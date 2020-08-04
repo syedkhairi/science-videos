@@ -21,7 +21,10 @@
 		var subject
 		var name
 		
+		$('#loader').css("visibility", "hidden")
+		
 		$('#biology, #chemistry, #physics').on('change', function(e) {
+			$('#loader').css("visibility", "visible")
 			subject = $(this).val();
 			name = $(this).find('option:selected').attr("name");
 			$('#biology, #chemistry, #physics').prop('selectedIndex',0);
@@ -36,11 +39,13 @@
 		        dataSource: data[name],
 		        pageSize: 16,
 		        callback: function(data, pagination) {
+			        
 					var titletemplate = Handlebars.compile($('#title-template').html())
 					$('#title').html(titletemplate(name))
 					
 					var resultstemplate = Handlebars.compile($('#results-template').html())
 					$('#results').html(resultstemplate(data, pagination))
+					$('#loader').hide()
 					console.log(pagination)
 				}
 		    });
@@ -149,6 +154,13 @@
 	
 	
 	<div class="container">
+		
+		<div class="text-center">
+		  <div id="loader" class="spinner-border" role="status">
+		    <span class="sr-only">Loading...</span>
+		  </div>
+		</div>
+		
 		<div id="title"></div>
 		<div id="results"><span class="text-muted"><i>Search specific keywords or use the dropdown buttons above to view all content.</i></span></div>
 	</div>
