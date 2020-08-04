@@ -65,23 +65,27 @@
 			<div class="col mb-3">
 			  	<div class="card h-100">
 					<div class="d-flex justify-content-center">
-		            	<div class="img-gradient h-100 w-100">
+		            	<div class="img-gradient h-50 w-100">
 				            <div style="object-fit: fill">
-					            <img src="https://cors-anywhere.herokuapp.com/ + {{link}}" class="card-img-top">
+					            <img src="https://i.ytimg.com/vi/kz9-oMMWI6Q/maxresdefault.jpg" class="card-img-top">
 					        </div>
 					    </div>
 					</div>
-					<span class="badge badge-info mt-1 mr-1 position-absolute" style="right: 0">{{demoOrFullPractical}}</span>
-				    <div class="card-body">
+					<span class="badge badge-info mt-1 mr-1 position-absolute" style="right: 0">{{type}}</span>
+				    <div class="card-body mb-n3">
 					    <p class="card-text mt-n3 small"><span class="badge badge-primary text-wrap text-left">{{topic}}</span></p>
-						<h5 class="card-title mt-n2"><a href="{{link}}" target="_blank" class="text-decoration-none">{{description}}</a></h5>
-						
+						<h5 class="card-title mt-n2"><a href="{{link}}" target="_blank" class="text-decoration-none">{{title}}</a></h5>
+						<div class="d-inline-block overflow-auto" style="max-width: 260px; max-height: 70px;">
+							<p class="small text-muted">{{description}}</p>
+						</div>
+				    </div>	
 						{{#if worksheet}}
-							<a href="{{worksheetLink}}" target="_blank" class="btn btn-outline-success btn-sm"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-paperclip" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<div class="card-footer">
+							<a href="{{worksheetLink}}" target="_blank" class="mt-auto btn btn-outline-success btn-sm"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-paperclip" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
 </svg> Worksheet</a>
+						</div>
 						{{/if}}
-				    </div>
 			  	</div>
 			</div>
 		  	{{/each}}
