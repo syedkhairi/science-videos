@@ -49,6 +49,8 @@
 							e.img = "https://syedkhairi.github.io/sciencedemos/img/demo.png";
 						} else if (getYouTubeId(e.link) === null && e.type === 'Practical') {
 							e.img = "https://syedkhairi.github.io/sciencedemos/img/practical.png";
+						} else if (getYouTubeId(e.link) === null && e.type === 'Other') {
+							e.img = "https://syedkhairi.github.io/sciencedemos/img/other.png";
 						} else {
 							var thumbnail = 'http://i3.ytimg.com/vi/' + getYouTubeId(e.link) + '/hqdefault.jpg';
 						    e.img = thumbnail;
