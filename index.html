@@ -44,12 +44,15 @@
   
 					data.map(function(e){
 						if (getYouTubeId(e.link) === null && e.type === 'Simulation') {
-							e.img = 'https://syedkhairi.github.io/sciencedemos/img/simulation.png';
+							e.img = "https://syedkhairi.github.io/sciencedemos/img/simulation.png";
+						} else if (getYouTubeId(e.link) === null && e.type === 'Demo') {
+							e.img = "https://syedkhairi.github.io/sciencedemos/img/demo.png";
+						} else if (getYouTubeId(e.link) === null && e.type === 'Practical') {
+							e.img = "https://syedkhairi.github.io/sciencedemos/img/practical.png";
 						} else {
-						var thumbnail = 'http://i3.ytimg.com/vi/' + getYouTubeId(e.link) + '/hqdefault.jpg';
-					    e.img = thumbnail;
+							var thumbnail = 'http://i3.ytimg.com/vi/' + getYouTubeId(e.link) + '/hqdefault.jpg';
+						    e.img = thumbnail;
 					    }
-					    console.log(data)
 					});
 
 					var titletemplate = Handlebars.compile($('#title-template').html())
