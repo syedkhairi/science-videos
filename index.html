@@ -35,18 +35,20 @@
 	function getData(subject, name){
 		$.getJSON(subject, function(data) {
 			
-			$('#results').pagination({
+			$('#pagination-container').pagination({
 		        dataSource: data[name],
 		        pageSize: 16,
+		        className: 'paginationjs-big',
+		        ulClassName: 'pagination',
 		        callback: function(data, pagination) {
 			        
 					var titletemplate = Handlebars.compile($('#title-template').html())
 					$('#title').html(titletemplate(name))
-					console.log(name)
 					
 					var resultstemplate = Handlebars.compile($('#results-template').html())
 					$('#results').html(resultstemplate(data, pagination))
 					$('#loader').hide()
+					console.log()
 				}
 		    });
 			
@@ -178,7 +180,8 @@
 		</div>
 		
 		<div id="title"></div>
-		<div id="results"><span class="text-muted"><i>Search specific keywords or use the dropdown buttons above to view all content.</i></span></div>
+		<div id="results" class="mb-3"><span class="text-muted"><i>Search specific keywords or use the dropdown buttons above to view all content.</i></span></div>
+		<nav id="pagination-container" class="mb-5 d-flex justify-content-center"></nav>
 	</div>
 	
 	<footer class="footer mt-auto py-3">
