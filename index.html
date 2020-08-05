@@ -43,8 +43,13 @@
 		        callback: function(data, pagination) {
   
 					data.map(function(e){
+						if (getYouTubeId(e.link) === null && e.type === 'Simulation') {
+							e.img = 'https://syedkhairi.github.io/sciencedemos/img/simulation.png';
+						} else {
 						var thumbnail = 'http://i3.ytimg.com/vi/' + getYouTubeId(e.link) + '/hqdefault.jpg';
 					    e.img = thumbnail;
+					    }
+					    console.log(data)
 					});
 
 					var titletemplate = Handlebars.compile($('#title-template').html())
@@ -90,7 +95,7 @@
 					<span class="badge badge-info mt-1 mr-1 position-absolute" style="right: 0">{{type}}</span>
 				    <div class="card-body mb-n3">
 					    <p class="card-text mt-n3 small"><span class="badge badge-primary text-wrap text-left">{{topic}}</span></p>
-						<h5 class="card-title mt-n2"><a href="{{link}}" target="_blank" class="text-decoration-none">{{title}}</a></h5>
+						<h6 class="card-title mt-n2"><a href="{{link}}" target="_blank" class="text-decoration-none">{{title}}</a></h6>
 						<div class="d-inline-block overflow-auto" style="max-width: 260px; max-height: 70px;">
 							<p class="small text-muted">{{description}}</p>
 						</div>
