@@ -42,6 +42,20 @@
 		        ulClassName: 'pagination',
 		        callback: function(data, pagination) {
 			        
+			        function getYouTubeId(value) {
+						var regEx = "^(?:https?:)?//[^/]*(?:youtube(?:-nocookie)?\.com|youtu\.be).*[=/]([-\\w]{11})(?:\\?|=|&|$)";
+						var matches = value.match(regEx);
+						if (matches) {
+							var result = matches.slice(1)
+							return result;
+						} else return null;
+					}
+			        
+					data.map(function(e){
+						var thumbnail = 'http://i3.ytimg.com/vi/' + getYouTubeId(e.link) + '/hqdefault.jpg';
+					    e.img = thumbnail;
+					});
+
 					var titletemplate = Handlebars.compile($('#title-template').html())
 					$('#title').html(titletemplate(name))
 					
@@ -69,7 +83,7 @@
 					<div class="d-flex justify-content-center">
 		            	<div class="img-gradient h-50 w-100">
 				            <div style="object-fit: fill">
-					            <img src="https://i.ytimg.com/vi/kz9-oMMWI6Q/maxresdefault.jpg" class="card-img-top">
+					            <img src="{{img}}" class="card-img-top">
 					        </div>
 					    </div>
 					</div>
@@ -185,7 +199,7 @@
 	
 	<footer class="footer mt-auto py-3">
 	  <div class="container">
-	    <span class="text-muted small">The <a href="https://docs.google.com/spreadsheets/d/1LqrrbL_my8q-UdUgNSYMCGm5QO5rx5DxGjNIGRj5-uY/edit#gid=1241571298" target="_blank">content</a> of this archive is crowd-sourced by <a href="https://twitter.com/@AhmedKhattabUK" target="_blank">@AhmedKhattabUK</a> & this website is open-sourced on <a href="https://github.com/syedkhairi/sciencedemos" target="_blank">GitHub</a> written by <a href="https://twitter.com/@MrKhairi_" target="_blank">@MrKhairi_</a>.</span>
+	    <span class="text-muted small">The <a href="https://docs.google.com/spreadsheets/d/1LqrrbL_my8q-UdUgNSYMCGm5QO5rx5DxGjNIGRj5-uY/edit" target="_blank">content</a> of this archive is crowd-sourced by <a href="https://twitter.com/@AhmedKhattabUK" target="_blank">@AhmedKhattabUK</a> & this website is open-sourced on <a href="https://github.com/syedkhairi/sciencedemos" target="_blank">GitHub</a> written by <a href="https://twitter.com/@MrKhairi_" target="_blank">@MrKhairi_</a>.</span>
 	  </div>
 	</footer>
 	
