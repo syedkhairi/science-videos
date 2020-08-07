@@ -19,6 +19,7 @@
     <title>Science Videos Archive</title>
     <meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@MrKhairi_" />
+	<meta name="twitter:creator" content="@AhmedKhattabUK" />
 	<meta name="twitter:title" content="Science Videos Archive" />
 	<meta name="twitter:description" content="A collection of teacher-curated videos & web simulations for teacher's demonstrations or class practicals." />
 	<meta name="twitter:image" content="" />
@@ -48,6 +49,7 @@
 		$('#loader').css("visibility", "hidden")
 		
 		$('#biology, #chemistry, #physics').on('change', function(e) {
+			$('#intro').hide()
 			$('#loader').css("visibility", "visible")
 			subject = $(this).val();
 			name = $(this).find('option:selected').attr("name");
@@ -228,7 +230,7 @@
 		</div>
 		
 		<div id="title"></div>
-		<div id="results" class="mb-3"><span class="text-muted"><i>Search specific keywords or use the dropdown buttons above to view all content.</i></span></div>
+		<div id="results" class="mb-3"><span class="text-muted" id="intro"><i>Search specific keywords or use the dropdown buttons above to view all content.</i></span></div>
 		<nav id="pagination-container" class="mb-5 d-flex justify-content-center"></nav>
 	</div>
 	
