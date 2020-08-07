@@ -8,7 +8,7 @@ Content crowdsourced by [@AhmedKhattabUK](https://twitter.com/@AhmedKhattabUK)
 
 Website written by [@MrKhairi_](https://twitter.com/@MrKhairi_)
 
-The database runs on Google Sheets where the data is transformed into a JSON object using Sheety as an API where this website fetch and display the information as a web page. Templating using Bootstrap.
+The database runs on Google Sheets where the data is transformed into a JSON object using Sheety as an API where this website fetch and display the information as a web page. Templating using Handlebars and styling with Bootstrap.
 
 ## Features:
 1. Teacher-curated videos
