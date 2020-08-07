@@ -40,6 +40,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 	<script src="https://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
 	<link rel="stylesheet" href="https://pagination.js.org/dist/2.1.4/pagination.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.1"></script>
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
@@ -54,11 +55,20 @@
 			subject = $(this).val();
 			name = $(this).find('option:selected').attr("name");
 			$('#biology, #chemistry, #physics').prop('selectedIndex',0);
-			getData(subject, name)
+			getData(subject, name , '')
 		})
+		
+		$('#search').submit(function(e) {
+			var keywords = $('#keywords').val()
+			subject = "https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/" + $('#keystage').val() + $('#subject').val()
+			name = $('#keystage').val() + $('#subject').val()
+			getData(subject, name, keywords)
+			event.preventDefault();
+		})
+	
 	})
 	
-	function getData(subject, name){
+	function getData(subject, name, keywords){
 		$.getJSON(subject, function(data) {
 			
 			$('#pagination-container').pagination({
@@ -67,6 +77,10 @@
 		        className: 'paginationjs-big',
 		        ulClassName: 'pagination',
 		        callback: function(data, pagination) {
+			        
+			        if (keywords !== '') {
+			        	data = showResults(data, keywords)
+			        }
   
 					data.map(function(e){
 						if (getYouTubeId(e.link) === null && e.type === 'Simulation') {
@@ -82,18 +96,49 @@
 						    e.img = thumbnail;
 					    }
 					});
-
+					
 					var titletemplate = Handlebars.compile($('#title-template').html())
 					$('#title').html(titletemplate(name))
 					
 					var resultstemplate = Handlebars.compile($('#results-template').html())
-					$('#results').html(resultstemplate(data, pagination))
+					$('#results').html(resultstemplate(data))
 					$('#loader').hide()
 				}
 		    });
 			
 			
 		})
+	}
+	
+	function showResults(data, keywords) {
+		
+		const options = {
+		  includeScore: true,
+		  keys: [
+		    {
+		      name: 'title',
+		      weight: 0.7
+		    },
+		    {
+		      name: 'description',
+		      weight: 0.2
+		    },
+		    {
+		      name: 'topic',
+		      weight: 0.1
+		    }
+		  ]
+		}
+
+		const fuse = new Fuse(data, options)
+		
+		const result = fuse.search(keywords)
+		
+		data = result.map(function(e) {
+		    return e.item;
+		});
+
+		return data
 	}
 	
     function getYouTubeId(value) {
@@ -156,7 +201,8 @@
 			</div>
 	      <a href="index.html" class="text-decoration-none"><h1 class="display-5 text-body">Science Videos Archive</h1></a>
 	      <p class="lead">A collection of teacher-curated videos & web simulations for teacher's demonstrations or class practicals.</p>
-	      <form>
+	      
+	      <form role="form" id="search">
 			  <div class="form-row align-items-center mb-3">
 			    <div class="col-sm-8">
 			      <input type="text" id="keywords" class="form-control form-control-lg" placeholder="Search">
@@ -172,19 +218,22 @@
 			    <div class="col-sm-auto">
 			     <select id="subject" class="custom-select custom-select-lg" required>
 				  <option selected>Subject</option>
-				  <option value="biology">Biology</option>
-				  <option value="chemistry">Chemistry</option>
-				  <option value="physics">Physics</option>
+				  <option value="Biology">Biology</option>
+				  <option value="Chemistry">Chemistry</option>
+				  <option value="Physics">Physics</option>
 				</select>
 			    </div>
 			    <div class="col-sm-auto">
-			      <button type="submit" class="btn btn-light btn-lg"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-</svg></button>
+			      <button type="submit" class="btn btn-light btn-lg">
+			      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+				  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+					</svg>
+					</button>
 			    </div>
 			  </div>
 		</form>
+		
 	     	<div class="row">
 				<div class="col-sm-4">
 					<div class="dropdown">
