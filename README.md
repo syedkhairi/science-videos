@@ -21,3 +21,4 @@ The database runs on Google Sheets where the data is transformed into a JSON obj
 3. Sheety
 4. pagination.js
 5. Bootstrap CSS
+6. fuse.js
