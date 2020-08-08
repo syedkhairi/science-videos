@@ -62,6 +62,8 @@
 			var keywords = $('#keywords').val()
 			subject = "https://v2-api.sheety.co/182a087c1d6ff0cf57c51546075e244b/demos/" + $('#keystage').val() + $('#subject').val()
 			name = $('#keystage').val() + $('#subject').val()
+			$('#intro').hide()
+			$('#loader').css("visibility", "visible")
 			getData(subject, name, keywords)
 			event.preventDefault();
 		})
