@@ -73,17 +73,19 @@
 	function getData(subject, name, keywords){
 		$.getJSON(subject, function(data) {
 			
+			var r = data[name]
+			
+			if (keywords !== '') {
+	        	r = showResults(r, keywords)
+	        }
+			
 			$('#pagination-container').pagination({
-		        dataSource: data[name],
+		        dataSource: r,
 		        pageSize: 16,
 		        className: 'paginationjs-big',
 		        ulClassName: 'pagination',
 		        callback: function(data, pagination) {
-			        
-			        if (keywords !== '') {
-			        	data = showResults(data, keywords)
-			        }
-  
+
 					data.map(function(e){
 						if (getYouTubeId(e.link) === null && e.type === 'Simulation') {
 							e.img = "https://syedkhairi.github.io/science-videos/img/simulation.png";
@@ -104,8 +106,6 @@
 					$('#loader').hide()
 				}
 		    });
-			
-			
 		})
 	}
 	
