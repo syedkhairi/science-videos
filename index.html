@@ -99,9 +99,6 @@
 					    }
 					});
 					
-					var titletemplate = Handlebars.compile($('#title-template').html())
-					$('#title').html(titletemplate(name))
-					
 					var resultstemplate = Handlebars.compile($('#results-template').html())
 					$('#results').html(resultstemplate(data))
 					$('#loader').hide()
@@ -152,10 +149,6 @@
 		} else return null;
 	}
 	
-	</script>
-		
-	<script id="title-template" type="text/x-handlebars-template">
-		<h5 class="mb-3">{{name}}</h5>
 	</script>
 	
 	<script id="results-template" type="text/x-handlebars-template">
@@ -280,7 +273,6 @@
 		  </div>
 		</div>
 		
-		<div id="title"></div>
 		<div id="results" class="mb-3"><span class="text-muted" id="intro"><i>Search specific keywords or use the dropdown buttons above to view all content.</i></span></div>
 		<nav id="pagination-container" class="mb-5 d-flex justify-content-center"></nav>
 	</div>
