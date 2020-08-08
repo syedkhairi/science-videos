@@ -1,6 +1,6 @@
-# Science Demo Archive
+# Science Videos Archive
 
-View at: https://syedkhairi.github.io/sciencedemos
+View at: https://syedkhairi.github.io/science-videos
 
 Work in progress
 
