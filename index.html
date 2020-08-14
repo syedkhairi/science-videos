@@ -44,6 +44,35 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
+		
+		Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+
+		    switch (operator) {
+		        case '==':
+		            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+		        case '===':
+		            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+		        case '!=':
+		            return (v1 != v2) ? options.fn(this) : options.inverse(this);
+		        case '!==':
+		            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+		        case '<':
+		            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+		        case '<=':
+		            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+		        case '>':
+		            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+		        case '>=':
+		            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+		        case '&&':
+		            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+		        case '||':
+		            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+		        default:
+		            return options.inverse(this);
+		    }
+		});
+
 		var subject
 		var name
 		
@@ -81,7 +110,7 @@
 			
 			$('#pagination-container').pagination({
 		        dataSource: r,
-		        pageSize: 20,
+		        pageSize: 24,
 		        className: 'paginationjs-big',
 		        ulClassName: 'pagination',
 		        callback: function(data, pagination) {
@@ -104,6 +133,9 @@
 					var resultstemplate = Handlebars.compile($('#results-template').html())
 					$('#results').html(resultstemplate(data))
 					$('#loader').hide()
+					$(function () {
+					  $('[data-toggle="tooltip"]').tooltip()
+					})
 				}
 		    });
 		})
@@ -115,11 +147,11 @@
 		  keys: [
 		    {
 		      name: 'title',
-		      weight: 0.7
+		      weight: 0.5
 		    },
 		    {
 		      name: 'description',
-		      weight: 0.2
+		      weight: 0.4
 		    },
 		    {
 		      name: 'topic',
@@ -163,20 +195,36 @@
 					    </div>
 					</div>
 					<span class="badge badge-info mt-1 mr-1 position-absolute" style="right: 0">{{type}}</span>
+					{{#if warning}}
+					<div class="position-absolute mt-4" style="left: 50%;">
+					<h1 class="position-relative" style="left: -50%;" data-toggle="tooltip" data-placement="top" title="Caution: Content of this video has been flagged due to safety concerns. Please seek advice & proceed at own risk."><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-exclamation-triangle" fill="white" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M7.938 2.016a.146.146 0 0 0-.054.057L1.027 13.74a.176.176 0 0 0-.002.183c.016.03.037.05.054.06.015.01.034.017.066.017h13.713a.12.12 0 0 0 .066-.017.163.163 0 0 0 .055-.06.176.176 0 0 0-.003-.183L8.12 2.073a.146.146 0 0 0-.054-.057A.13.13 0 0 0 8.002 2a.13.13 0 0 0-.064.016zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+  <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+</svg></h1></div>
+					{{/if}}
 				    <div class="card-body mb-n3">
 					    <p class="card-text mt-n3 small"><span class="badge badge-primary text-wrap text-left">{{topic}}</span></p>
 						<h6 class="card-title mt-n2"><a href="{{link}}" target="_blank" class="text-decoration-none">{{title}}</a></h6>
 						<div class="d-inline-block overflow-auto" style="max-width: 100%; max-height: 75px;">
 							<p class="small text-muted">{{description}}</p>
 						</div>
-				    </div>	
-						{{#if attachment}}
+				    </div>
+				    	
+						{{#ifCond attachment '||' cleapss}}
 						<div class="card-footer bg-white">
-							<a href="{{attachmentLink}}" target="_blank" class="mt-auto btn btn-outline-success btn-sm btn-block"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-paperclip" fill="currentColor" xmlns="https://www.w3.org/2000/svg">
+							<div class="row">
+							{{#if attachment}}
+							<a href="{{attachmentLink}}" target="_blank" class="mt-auto btn btn-outline-success btn-sm btn-block {{#if cleapss}}col-9{{/if}}"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-paperclip" fill="currentColor" xmlns="https://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
 </svg> Worksheets</a>
+{{/if}}
+						{{#if cleapss}}
+						<a href="{{cleapssLink}}" target="_blank" class="col-3 text-right" data-toggle="tooltip" data-placement="top" title="Click to view related CLEAPSS resources - log in required once redirected"><img src="img/cleapss.png" class="float-right img-fluid"></a>
+						{{/if}} 
+							</div>
 						</div>
-						{{/if}}
+						{{/ifCond}}
+						
 			  	</div>
 			</div>
 		  	{{/each}}
@@ -277,7 +325,7 @@
 	
 	<footer class="footer mt-auto py-3">
 	  <div class="container">
-	    <span class="text-muted small">The <a href="https://docs.google.com/spreadsheets/d/1LqrrbL_my8q-UdUgNSYMCGm5QO5rx5DxGjNIGRj5-uY/edit" target="_blank">content</a> of this archive is crowd-sourced by <a href="https://twitter.com/@AhmedKhattabUK" target="_blank">@AhmedKhattabUK</a> & this website is open-sourced on <a href="https://github.com/syedkhairi/sciencedemos" target="_blank">GitHub</a> written by <a href="https://twitter.com/@MrKhairi_" target="_blank">@MrKhairi_</a>.</span>
+	    <span class="text-muted small">The content of this archive is crowd-sourced by <a href="https://twitter.com/@AhmedKhattabUK" target="_blank">@AhmedKhattabUK</a> & this website is open-sourced on <a href="https://github.com/syedkhairi/sciencedemos" target="_blank">GitHub</a> written by <a href="https://twitter.com/@MrKhairi_" target="_blank">@MrKhairi_</a>.</span>
 	  </div>
 	</footer>
 	
